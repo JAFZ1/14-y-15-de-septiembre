@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Digital Nicaragua 🇳🇮</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 18px rgba(0, 103, 198, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 28px rgba(0, 103, 198, 0.85); }
+        }
+        .animate-glow { animation: pulse-glow 2.2s infinite ease-in-out; }
+        
+        @keyframes flag-wave-slow {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-3deg) scale(1.02); }
+            75% { transform: rotate(3deg) scale(1.02); }
+        }
+        .flag-wave { 
+            animation: flag-wave-slow 3.5s ease-in-out infinite; 
+            transform-origin: center; 
+            display: inline-block;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.25));
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0067C6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 font-sans text-gray-800 min-h-screen flex flex-col items-center justify-center p-2 sm:p-4 selection:bg-blue-500 selection:text-white">
+
+    <!-- MARCO DE SIMULADOR MÓVIL -->
+    <div class="relative w-full max-w-[390px] h-[780px] bg-black rounded-[40px] p-3 shadow-2xl border-4 border-slate-700 ring-1 ring-slate-800 overflow-hidden">
+        
+        <!-- Muesca / Cámara frontal del teléfono -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 h-6 w-36 bg-black rounded-b-2xl z-50 flex items-center justify-center">
+            <div class="w-12 h-1 bg-slate-800 rounded-full"></div>
+        </div>
+
+        <!-- PANTALLA DEL TELÉFONO -->
+        <div id="screen-container" class="w-full h-full bg-slate-100 rounded-[30px] overflow-hidden relative flex flex-col pt-4">
+            
+            <!-- 1. PANTALLA INICIAL (COVER / ENVOLTORIO) -->
+            <div id="welcome-screen" class="absolute inset-0 z-40 flex flex-col justify-between bg-gradient-to-b from-[#0052a3] via-blue-600 to-[#003c78] pt-7 pb-3 px-3 text-center overflow-hidden">
+                
+                <!-- Encabezado de la portada -->
+                <div class="w-full shrink-0">
+                    <div class="inline-flex items-center space-x-2 bg-white/95 text-[#0067C6] px-3.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-widest border border-blue-200 shadow-md mb-1">
+                        <i class="fa-solid fa-star text-amber-500 text-[9px]"></i>
+                        <span>MINED Nicaragua</span>
+                        <i class="fa-solid fa-star text-amber-500 text-[9px]"></i>
+                    </div>
+                    <h1 class="text-lg font-black text-white tracking-tight uppercase leading-tight drop-shadow-md">
+                        🇳🇮 ¡Celebremos Nuestra Patria!
+                    </h1>
+                    <p class="text-[10px] font-bold text-blue-100 tracking-wide mt-0.5">Orgullo, identidad y tradición que nos unen.</p>
+                </div>
+
+                <!-- Imagen Oficial de Inicio (Escudo Colegio JAFZ) -->
+                <div class="w-full flex justify-center items-center my-1 shrink-0">
+                    <div class="flag-wave rounded-2xl border-2 border-white/90 shadow-xl overflow-hidden bg-white p-2 max-w-[165px] w-full flex items-center justify-center">
+                        <img 
+                            id="img-welcome"
+                            src="fotos/logoJAFZ.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/FFFFFF/0067C6?text=Escudo+Colegio+JAFZ';" 
+                            alt="Escudo Colegio J. Augusto Flores Z." 
+                            class="w-full h-auto max-h-26 object-contain block mx-auto"
+                        />
+                    </div>
+                </div>
+
+                <!-- Mensaje y Botón de Entrada -->
+                <div class="w-full space-y-1.5 shrink-0 px-1">
+                    <p class="text-white text-[10px] font-medium max-w-[280px] mx-auto leading-tight drop-shadow-sm">
+                        ✨ Estás cordialmente invitado a ser parte de nuestro Desfile y Gran Recorrido Patrio.
+                    </p>
+                    
+                    <button onclick="openInvitation()" class="w-full animate-glow bg-amber-400 hover:bg-amber-300 active:scale-98 text-slate-900 font-black py-2.5 px-5 rounded-full shadow-2xl transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer border-2 border-amber-200">
+                        <i class="fa-solid fa-envelope-open-text text-base text-slate-900"></i>
+                        <span class="text-xs uppercase tracking-wider">Toca para Abrir</span>
+                    </button>
+                </div>
+
+                <!-- Imagen Lema Patrio (2026ave.jpeg) ajustada únicamente en su recuadro -->
+                <div class="w-full flex justify-center items-center my-1 shrink-0">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden p-1 border border-white/90 max-w-[250px] w-full flex items-center justify-center">
+                        <img 
+                            src="fotos/2026ave.jpeg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/500x250/FFFFFF/0067C6?text=Patria+Dignidad+y+Libertad';" 
+                            alt="Patria, Dignidad y Libertad" 
+                            class="w-full h-auto max-h-22 object-contain block mx-auto"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. CONTENIDO PRINCIPAL -->
+            <div id="main-content" class="opacity-0 transition-opacity duration-700 flex-1 flex flex-col justify-between pb-16 relative">
+                
+                <!-- Encabezado con Escudo Nacional de Nicaragua -->
+                <header class="p-3 text-center bg-gradient-to-r from-blue-900 via-[#0067C6] to-blue-900 text-white shadow-md relative flex flex-col justify-center items-center">
+                    <img 
+                        src="fotos/escudo-de-nicaragua-logo-vector-free-download-11574123120it1a0gabhi-3433181958-removebg-preview.png" 
+                        onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/2/27/Coat_of_arms_of_Nicaragua.svg';" 
+                        alt="Escudo de Nicaragua" 
+                        class="h-16 w-auto object-contain drop-shadow-lg py-0.5"
+                    />
+                </header>
+
+                <!-- VISTA 1: DETALLES DEL EVENTO -->
+                <div id="view-details" class="space-y-3.5 flex-1 pb-4">
+                    <!-- Imagen Hero del Afiche Oficial -->
+                    <div class="relative w-full bg-slate-800 border-b-2 border-blue-200 shadow-inner overflow-hidden">
+                        <img 
+                            id="img-main-content"
+                            src="fotos/Diseño sin título(1).jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x350/0052a3/FFFFFF?text=MINED+Patria+Dignidad+y+Libertad';" 
+                            alt="MINED - Patria Dignidad y Libertad" 
+                            class="w-full h-48 object-cover object-center"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-100 via-transparent to-transparent"></div>
+                    </div>
+
+                    <!-- Detalles de la Invitación -->
+                    <div class="px-4 space-y-3.5 -mt-6 relative z-10">
+                        
+                        <!-- Fecha y Hora -->
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div class="bg-white border-2 border-blue-100 p-3 rounded-2xl text-center shadow-md hover:border-blue-300 transition">
+                                <div class="w-8 h-8 bg-blue-50 text-[#0067C6] rounded-full flex items-center justify-center mx-auto mb-1">
+                                    <i class="fa-solid fa-calendar-day text-base"></i>
+                                </div>
+                                <p class="text-[9px] text-slate-400 font-extrabold uppercase tracking-wider">Fecha</p>
+                                <p class="text-xs font-black text-slate-800">5 de Septiembre</p>
+                            </div>
+                            <div class="bg-white border-2 border-blue-100 p-3 rounded-2xl text-center shadow-md hover:border-blue-300 transition">
+                                <div class="w-8 h-8 bg-blue-50 text-[#0067C6] rounded-full flex items-center justify-center mx-auto mb-1">
+                                    <i class="fa-solid fa-clock text-base"></i>
+                                </div>
+                                <p class="text-[9px] text-slate-400 font-extrabold uppercase tracking-wider">Hora</p>
+                                <p class="text-xs font-black text-slate-800">3:00 p. m.</p>
+                            </div>
+                        </div>
+
+                        <!-- Puntos del Recorrido -->
+                        <div class="bg-white border-2 border-slate-100 p-3.5 rounded-2xl space-y-3 shadow-md">
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-emerald-100 text-emerald-700 w-9 h-9 rounded-xl flex items-center justify-center text-base shadow-xs shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] text-slate-400 font-extrabold uppercase tracking-wider">Punto de Salida</p>
+                                    <p class="text-xs font-bold text-slate-800 leading-tight">La Ermita</p>
+                                </div>
+                            </div>
+                            
+                            <div class="border-t border-slate-100"></div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <div class="bg-rose-100 text-rose-700 w-9 h-9 rounded-xl flex items-center justify-center text-base shadow-xs shrink-0">
+                                    <i class="fa-solid fa-school"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] text-slate-400 font-extrabold uppercase tracking-wider">Punto de Llegada</p>
+                                    <p class="text-xs font-bold text-slate-800 leading-tight">Colegio José Augusto Flores Zúñiga</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Imagen del Desfile Patriótico -->
+                    <div class="px-4 mt-2 pb-2">
+                        <div class="relative w-full h-52 rounded-2xl overflow-hidden shadow-lg border-2 border-blue-200/80 bg-slate-900">
+                            <img 
+                                src="fotos/DESFILES-PATRIO-CARAZO-(11)-1181227725.jpg" 
+                                onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Independencia_de_Nicaragua.jpg/800px-Independencia_de_Nicaragua.jpg';" 
+                                alt="Desfile Patriótico Nicaragua" 
+                                class="w-full h-full object-cover object-center"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-slate-900/10 pointer-events-none"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-[#0067C6]/20 via-transparent to-[#0067C6]/20 pointer-events-none"></div>
+                        </div>
+                    </div>
+
+                    <!-- BOTÓN PRINCIPAL PARA IR A LA AGENDA -->
+                    <div class="px-4 pt-1">
+                        <button onclick="switchTab('agenda')" class="w-full bg-gradient-to-r from-[#0067C6] via-blue-600 to-[#0067C6] hover:from-blue-700 hover:to-blue-800 active:scale-98 text-white font-black py-3.5 px-6 rounded-2xl shadow-xl transition-all duration-200 flex items-center justify-center space-x-3 cursor-pointer border border-blue-300/40">
+                            <i class="fa-solid fa-list-check text-lg"></i>
+                            <span class="text-sm uppercase tracking-wider">AGENDA</span>
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- BOTÓN PARA REGRESAR AL INICIO -->
+                    <div class="px-4 pt-1 pb-2">
+                        <button onclick="goToWelcome()" class="w-full bg-slate-200 hover:bg-slate-300 active:scale-98 text-slate-800 font-bold py-2.5 px-4 rounded-xl text-xs shadow-sm transition flex items-center justify-center space-x-2 cursor-pointer">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Volver al Inicio</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VISTA 2: AGENDA / PROGRAMA DEL ACTO -->
+                <div id="view-agenda" class="px-4 py-3 space-y-3 hidden flex-1 pb-4">
+                    
+                    <div class="text-center bg-blue-50 border border-blue-100 rounded-2xl p-3 mb-3 shadow-xs">
+                        <div class="inline-flex items-center space-x-1.5 bg-[#0067C6] text-white px-3 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-scroll text-amber-300"></i>
+                            <span>Programa Oficial</span>
+                        </div>
+                        <h2 class="text-sm font-black text-slate-800 uppercase tracking-tight">PROGRAMA DEL ACTO PATRIÓTICO</h2>
+                    </div>
+
+                    <!-- TIMELINE DE LA AGENDA -->
+                    <div class="space-y-2.5 relative before:absolute before:left-5 before:top-3 before:bottom-3 before:w-0.5 before:bg-blue-200">
+                        
+                        <!-- Ítem 1 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-amber-500 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                1
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-amber-600 uppercase tracking-wider">Apertura</p>
+                                <p class="text-xs font-extrabold text-slate-800">🙏 INVOCACIÓN AL CREADOR</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo del Pastor Remigio Antonio Nicaragua Silva.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 2 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-[#0067C6] text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                2
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-[#0067C6] uppercase tracking-wider">Símbolo Patrio</p>
+                                <p class="text-xs font-extrabold text-slate-800">🇳🇮 HIMNO NACIONAL DE NICARAGUA</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">Interpretado por el Coro del Colegio José Augusto Flores Zúñiga.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 3 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                3
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-blue-600 uppercase tracking-wider">Palabras Centrales</p>
+                                <p class="text-xs font-extrabold text-slate-800">🎙️ PALABRAS DEL COMPAÑERO POLÍTICO DEL DISTRITO II</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo del Compañero Bismarck Medina.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 4 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                4
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-indigo-600 uppercase tracking-wider">Dirección Escolar</p>
+                                <p class="text-xs font-extrabold text-slate-800">🎙️ PALABRAS DEL DIRECTOR DEL CENTRO EDUCATIVO</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo del Compañero Guillermo Martínez.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 5 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                5
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-purple-600 uppercase tracking-wider">Valle Sur</p>
+                                <p class="text-xs font-extrabold text-slate-800">🇳🇮 PARTICIPACIÓN DE LA COMPAÑERA POLÍTICA DEL VALLE SUR</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">Dra. Gloria Sáenz.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 6 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                6
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-red-600 uppercase tracking-wider">Juventud Sandinista</p>
+                                <p class="text-xs font-extrabold text-slate-800">🇳🇮 PARTICIPACIÓN DE JUVENTUD SANDINISTA</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">Itzel Carranza y Jefferson Ruiz.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 7 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-rose-500 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                7
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-rose-500 uppercase tracking-wider">Cultura y Tradición</p>
+                                <p class="text-xs font-extrabold text-slate-800">💃 PRESENTACIÓN DE DANZA FOLKLÓRICA</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo de la estudiante Britany Castro, de 11.º grado.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 8 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                8
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-emerald-600 uppercase tracking-wider">Identidad Patria</p>
+                                <p class="text-xs font-extrabold text-slate-800">📖 RESEÑA HISTÓRICA DE UN SÍMBOLO NACIONAL</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo del estudiante Allam Miguel Ortiz Reyes.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 9 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-cyan-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                9
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-cyan-600 uppercase tracking-wider">Canto Coral</p>
+                                <p class="text-xs font-extrabold text-slate-800">🎶 PRESENTACIÓN MUSICAL</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">“Masaya Está de Fiesta”, a cargo del Coro del Colegio José Augusto Flores Zúñiga.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 10 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-fuchsia-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                10
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-fuchsia-600 uppercase tracking-wider">Danza Folklórica</p>
+                                <p class="text-xs font-extrabold text-slate-800">💃 PRESENTACIÓN DE DANZA FOLKLÓRICA</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">A cargo de las estudiantes de 7.º grado: Dareling Soto y Yuneisy López.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ítem 11 -->
+                        <div class="relative flex items-start space-x-3 bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm hover:border-blue-200 transition">
+                            <div class="w-7 h-7 bg-teal-600 text-white rounded-full flex items-center justify-center text-xs font-black shrink-0 z-10 shadow-xs">
+                                11
+                            </div>
+                            <div class="flex-1 text-left">
+                                <p class="text-[9px] font-bold text-teal-600 uppercase tracking-wider">Cierre Magna</p>
+                                <p class="text-xs font-extrabold text-slate-800">🎵 HIMNO DE LA EDUCACIÓN</p>
+                                <p class="text-[11px] text-slate-600 font-medium leading-snug">Interpretado por el Coro del Colegio José Augusto Flores Zúñiga.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BOTÓN VOLVER A DETALLES DESDE AGENDA -->
+                    <div class="pt-2">
+                        <button onclick="switchTab('details')" class="w-full bg-slate-200 hover:bg-slate-300 active:scale-98 text-slate-800 font-bold py-2.5 px-4 rounded-xl text-xs shadow-sm transition flex items-center justify-center space-x-2 cursor-pointer">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Volver a Invitación</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        function openInvitation() {
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+            const screenContainer = document.getElementById('screen-container');
+            
+            welcome.style.display = 'none';
+            main.classList.remove('opacity-0');
+            screenContainer.classList.remove('overflow-hidden');
+            screenContainer.classList.add('overflow-y-auto');
+
+            // Confeti con los colores oficiales de Nicaragua (Azul y Blanco)
+            confetti({
+                particleCount: 110,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#0067C6', '#FFFFFF', '#38bdf8', '#ffd700']
+            });
+        }
+
+        function goToWelcome() {
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+            const screenContainer = document.getElementById('screen-container');
+            
+            screenContainer.scrollTop = 0;
+            screenContainer.classList.remove('overflow-y-auto');
+            screenContainer.classList.add('overflow-hidden');
+            main.classList.add('opacity-0');
+            welcome.style.display = 'flex';
+        }
+
+        function switchTab(tab) {
+            const detailsView = document.getElementById('view-details');
+            const agendaView = document.getElementById('view-agenda');
+
+            if (tab === 'details') {
+                detailsView.classList.remove('hidden');
+                agendaView.classList.add('hidden');
+            } else {
+                detailsView.classList.add('hidden');
+                agendaView.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
