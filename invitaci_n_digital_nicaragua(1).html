@@ -36,8 +36,6 @@
       display: grid;
       place-items: center;
       padding: max(0.6rem, env(safe-area-inset-top)) max(0.6rem, env(safe-area-inset-right)) max(0.6rem, env(safe-area-inset-bottom)) max(0.6rem, env(safe-area-inset-left));
-      overflow-x: hidden;
-      overscroll-behavior-y: none;
     }
 
     /* Cuadro responsive: se adapta a vertical y horizontal */
@@ -49,8 +47,6 @@
       max-height: 100svh;
       position: relative;
       container-type: size;
-      perspective: 1600px;
-      overflow: visible;
     }
 
     @media (orientation: landscape) {
@@ -98,83 +94,24 @@
       .acta-wrap { height: 32% !important; min-height: 100px; }
     }
 
-    /* ===== PORTADA / LIBRO CERRADO ===== */
+    /* ===== PORTADA / SOBRE CERRADO ===== */
     .cover {
-      position: absolute;
-      inset: 0;
+      position: relative;
       width: 100%;
       height: 100%;
       border-radius: clamp(14px, 3.5%, 22px);
+      overflow: hidden;
       color: #f7f1e8;
       box-shadow: 0 28px 70px rgba(0,0,0,.45);
-      transform-style: preserve-3d;
-      transform-origin: left center;
-      will-change: transform;
-      z-index: 20;
-      transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .3s ease;
-    }
-
-    .cover.turning {
-      transition: transform 1.15s cubic-bezier(.3, .6, .2, 1), box-shadow .5s ease;
-      transform: rotateY(-180deg);
-      box-shadow: -34px 20px 64px rgba(0,0,0,.45);
-      pointer-events: none;
+      transition: opacity .45s ease, transform .45s ease;
     }
 
     .cover.out {
       opacity: 0;
-      transform: translateY(22px) rotateY(-180deg);
-      visibility: hidden;
+      transform: scale(.96) translateY(12px);
       pointer-events: none;
-      transition: opacity .35s ease, transform .55s cubic-bezier(.22,1,.36,1), visibility 0s linear .6s;
-    }
-
-    /* Sombra que recorre la hoja mientras gira */
-    .page-shade {
       position: absolute;
       inset: 0;
-      z-index: 6;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,.28), rgba(0,0,0,.05) 30%, transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.14), transparent 40%);
-      opacity: .8;
-    }
-
-    .cover.turning .page-shade,
-    .cover.out .page-shade { opacity: 0; transition: opacity .5s ease .05s; }
-
-    /* Bloque de páginas que asoma por el canto del libro */
-    .book-pages {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      border-radius: inherit;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .book-pages i {
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(160deg, #f2ead9, #e0d2b6);
-      box-shadow: 0 0 0 1px rgba(90,70,40,.07);
-    }
-
-    .book-pages i:nth-child(2) { transform: translate(5px, 5px); }
-    .book-pages i:nth-child(3) { transform: translate(8px, 8px); opacity: .6; }
-
-    .cover-front {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      border-radius: inherit;
-      overflow: hidden;
-      background: #2a231c;
-      box-shadow: inset 8px 0 10px -6px rgba(0,0,0,.5);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
 
     .cover-img {
@@ -287,8 +224,6 @@
       background: linear-gradient(135deg, #e8b57a, var(--cobre));
       box-shadow: 0 12px 28px rgba(196,120,59,.4);
       animation: pulse 2.4s ease-in-out infinite;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .open-btn:active { transform: scale(.98); }
@@ -298,11 +233,164 @@
       50% { box-shadow: 0 14px 36px rgba(196,120,59,.55); }
     }
 
-    /* ===== CONTENIDO / PÁGINA INTERIOR ===== */
-    .letter {
+    /* ===== ANIMACIÓN AL ABRIR ===== */
+    .fx {
       position: absolute;
       inset: 0;
+      z-index: 30;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .fx.on {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .fx-dim {
+      position: absolute;
+      inset: 0;
+      background: rgba(20,17,15,.5);
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .fx.on .fx-dim { opacity: 1; }
+
+    .envelope {
+      position: relative;
+      width: min(78%, 280px);
+      aspect-ratio: 1 / 1;
+      transform: scale(.94);
+      opacity: 0;
+      transition: opacity .3s ease, transform .4s cubic-bezier(.22,1,.36,1);
+      perspective: 900px;
+    }
+
+    .fx.on .envelope {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .env-back, .env-front, .env-flap {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+    }
+
+    .env-back {
+      background: linear-gradient(160deg, #2a4a3a, var(--verde-oscuro));
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+
+    .env-front {
+      background:
+        linear-gradient(180deg, transparent 42%, #1f5c45 42%),
+        linear-gradient(135deg, transparent 49.5%, #184a37 49.5%, #184a37 50.5%, transparent 50.5%),
+        linear-gradient(-135deg, transparent 49.5%, #163f30 49.5%, #163f30 50.5%, transparent 50.5%),
+        linear-gradient(160deg, #2f6b50, var(--verde));
+      clip-path: polygon(0 38%, 50% 68%, 100% 38%, 100% 100%, 0 100%);
+      z-index: 3;
+    }
+
+    .env-flap {
+      background: linear-gradient(180deg, #3d8a66, #1f5c45);
+      clip-path: polygon(0 0, 100% 0, 50% 58%);
+      transform-origin: top center;
+      transform-style: preserve-3d;
+      z-index: 4;
+      transition: transform .7s cubic-bezier(.22,1,.36,1);
+    }
+
+    .fx.open .env-flap {
+      transform: rotateX(175deg);
+      z-index: 1;
+    }
+
+    .env-seal {
+      position: absolute;
+      left: 50%; top: 42%;
+      width: 46px; height: 46px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #e8b57a, var(--cobre));
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      font-family: "Fraunces", serif;
+      font-weight: 900;
+      color: var(--ink);
+      transition: opacity .3s ease, transform .4s ease;
+    }
+
+    .fx.open .env-seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.35);
+    }
+
+    .env-card {
+      position: absolute;
+      left: 8%; right: 8%; top: 18%;
+      height: 62%;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fffefb, #f3ece2);
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: .75rem;
+      transform: translateY(18%);
+      opacity: 0;
+      transition: transform .7s cubic-bezier(.22,1,.36,1) .12s, opacity .4s ease .1s;
+      box-shadow: 0 8px 20px rgba(0,0,0,.2);
+    }
+
+    .fx.open .env-card {
+      transform: translateY(-30%);
+      opacity: 1;
+    }
+
+    .env-card strong {
       display: block;
+      font-family: "Fraunces", serif;
+      font-size: 1.15rem;
+      color: var(--verde-oscuro);
+      margin-bottom: .2rem;
+    }
+
+    .env-card span {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cobre);
+    }
+
+    .flash {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      z-index: 40;
+      background: radial-gradient(circle at 50% 45%, rgba(255,244,220,.95), rgba(255,236,200,.4) 35%, transparent 70%);
+      opacity: 0;
+    }
+
+    .flash.burst { animation: soft-flash 1s ease-out forwards; }
+
+    @keyframes soft-flash {
+      0% { opacity: 0; }
+      18% { opacity: .85; }
+      100% { opacity: 0; }
+    }
+
+    /* ===== CONTENIDO / CARTA ABIERTA ===== */
+    .letter {
+      display: none;
       width: 100%;
       height: 100%;
       background: var(--papel);
@@ -311,22 +399,17 @@
       box-shadow: 0 28px 70px rgba(0,0,0,.45);
       overflow-y: auto;
       overscroll-behavior: contain;
-      opacity: 0;
-      visibility: hidden;
-      z-index: 10;
-      transform: rotateX(9deg) translateY(28px) scale(.97);
-      transform-origin: 50% 0%;
-      transition: opacity .4s ease, transform .65s cubic-bezier(.19,1,.28,1), visibility 0s linear .5s;
+      animation: letter-in .7s cubic-bezier(.22,1,.36,1) both;
       container-type: size;
     }
 
     .letter::-webkit-scrollbar { width: 0; }
 
-    .letter.show {
-      opacity: 1;
-      visibility: visible;
-      transform: rotateX(0deg) translateY(0) scale(1);
-      transition: opacity .4s ease, transform .65s cubic-bezier(.19,1,.28,1), visibility 0s;
+    .letter.show { display: block; }
+
+    @keyframes letter-in {
+      from { opacity: 0; transform: translateY(36px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .letter-top {
@@ -495,8 +578,6 @@
       letter-spacing: .08em;
       text-transform: uppercase;
       cursor: pointer;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .btn-dark { background: var(--verde-oscuro); color: #f7f1e8; }
@@ -538,26 +619,40 @@
   </style>
 </head>
 <body>
-  <div class="stage" id="stage">
-    <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
+  <div class="stage">
+    <!-- 1. PORTADA (sobre cerrado + guardabarranco) -->
     <section class="cover" id="cover">
-      <div class="book-pages" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="cover-front">
-        <div class="cover-img">
-          <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
-        </div>
-        <div class="cover-shade"></div>
-        <div class="cover-flap" aria-hidden="true"></div>
-        <div class="cover-seal" aria-hidden="true">14</div>
-        <div class="page-shade" aria-hidden="true"></div>
-        <div class="cover-body">
-          <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
-          <h1>14 y 15 de Septiembre</h1>
-          <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
-          <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
-        </div>
+      <div class="cover-img">
+        <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
+      </div>
+      <div class="cover-shade"></div>
+      <div class="cover-flap" aria-hidden="true"></div>
+      <div class="cover-seal" aria-hidden="true">14</div>
+      <div class="cover-body">
+        <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
+        <h1>14 y 15 de Septiembre</h1>
+        <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
+        <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
       </div>
     </section>
+
+    <!-- Efecto sobre + flash -->
+    <div class="fx" id="fx" aria-hidden="true">
+      <div class="fx-dim"></div>
+      <div class="envelope">
+        <div class="env-back"></div>
+        <div class="env-card">
+          <div>
+            <strong>Fiestas Patrias</strong>
+            <span>14 y 15 · Septiembre</span>
+          </div>
+        </div>
+        <div class="env-flap"></div>
+        <div class="env-front"></div>
+        <div class="env-seal">14</div>
+      </div>
+      <div class="flash" id="flash"></div>
+    </div>
 
     <!-- 2 y 3. CARTA / CONTENIDO -->
     <article class="letter" id="letter">
@@ -625,7 +720,7 @@
 
         <div class="actions">
           <button class="btn btn-dark" type="button" onclick="verAgenda()">Ver agenda</button>
-          <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
+          <button class="btn btn-soft" type="button" onclick="inicio()">Volver al sobre</button>
         </div>
       </div>
 
@@ -651,6 +746,8 @@
   <script>
     const cover = document.getElementById("cover");
     const letter = document.getElementById("letter");
+    const fx = document.getElementById("fx");
+    const flash = document.getElementById("flash");
     const details = document.getElementById("details");
     const agenda = document.getElementById("agenda");
     let abriendo = false;
@@ -659,9 +756,20 @@
       if (abriendo) return;
       abriendo = true;
 
-      setTimeout(() => cover.classList.add("turning"), 60);
+      fx.classList.add("on");
+
+      requestAnimationFrame(() => {
+        setTimeout(() => fx.classList.add("open"), 160);
+      });
 
       setTimeout(() => {
+        flash.classList.remove("burst");
+        void flash.offsetWidth;
+        flash.classList.add("burst");
+      }, 500);
+
+      setTimeout(() => {
+        cover.classList.add("out");
         letter.classList.add("show");
         confetti({
           particleCount: 95,
@@ -669,21 +777,23 @@
           origin: { y: 0.55 },
           colors: ["#1f5c45", "#c4783b", "#e0a066", "#f7f1e8"]
         });
-      }, 880);
+      }, 780);
 
       setTimeout(() => {
-        cover.classList.add("out");
+        fx.classList.remove("on", "open");
+        flash.classList.remove("burst");
         abriendo = false;
-      }, 1500);
+      }, 1400);
     }
 
     function inicio() {
       letter.scrollTop = 0;
       letter.classList.remove("show");
       cover.classList.remove("out");
+      fx.classList.remove("on", "open");
+      flash.classList.remove("burst");
       verDetalle();
       abriendo = false;
-      setTimeout(() => cover.classList.remove("turning"), 80);
     }
 
     function verAgenda() {
