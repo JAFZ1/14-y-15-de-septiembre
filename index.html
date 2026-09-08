@@ -626,33 +626,125 @@
     }
 
     .agenda-card + .agenda-card p { color: var(--soft); }
-
-    /* ===== PARTES CARGADAS (no afectan al layout) ===== */
-    #part-portada, #part-principal, #part-agenda { display: contents; }
   </style>
 </head>
 <body>
   <div class="stage" id="stage">
-    <!-- 1. PORTADA -->
-    <div id="part-portada"></div>
+    <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
+    <div class="book">
+      <section class="cover" id="cover">
+        <div class="book-pages" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="cover-front">
+          <div class="cover-img">
+            <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
+          </div>
+          <div class="cover-shade"></div>
+          <div class="cover-flap" aria-hidden="true"></div>
+          <div class="cover-seal" aria-hidden="true"><img src="fotos/escudo-de-nicaragua-logo-vector-free-download-11574123120it1a0gabhi-3433181958-removebg-preview.png" alt="Escudo de Nicaragua"></div>
+          <div class="page-shade" aria-hidden="true"></div>
+          <div class="cover-body">
+            <h1>14 de septiembre</h1>
+            <span class="eyebrow">El Colegio Público José Augusto Flores Zúñiga</span>
+            <p>Te invita a celebrar la Batalla de San Jacinto.</p>
+            <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
+          </div>
+        </div>
+      </section>
+    </div>
 
-    <!-- 2 y 3. INTERIOR + AGENDA -->
+    <!-- 2. INTERIOR / CONTENIDO PRINCIPAL -->
     <article class="letter" id="letter">
-      <div id="part-principal"></div>
-      <div id="part-agenda"></div>
+      <header class="letter-top">
+        <img class="logo" src="ni.jpg" alt="Logo Colegio José Augusto Flores Zúñiga">
+      </header>
+
+      <div class="details" id="details">
+        <div class="fade-top" aria-hidden="true"></div>
+
+        <!-- Contenido principal: 14 -->
+        <div class="photo-wrap">
+          <img class="photo" src="14 de septimbre.jpg" alt="14 de septiembre — Batalla de San Jacinto">
+        </div>
+
+        <div class="block">
+          <div class="label"><span>Día 14 · San Jacinto</span></div>
+          <h3 class="title">Desfile patriótico</h3>
+          <div class="meta">
+            <article>
+              <p class="k">Fecha</p>
+              <p class="v">14 de septiembre</p>
+            </article>
+            <article>
+              <p class="k">Hora</p>
+              <p class="v">7:00 a. m.</p>
+            </article>
+          </div>
+          <div class="place">
+            <div class="place-row">
+              <p class="k">Salida</p>
+              <p class="v">El Hatillo</p>
+            </div>
+            <div class="place-row">
+              <p class="k">Punto de reunión</p>
+              <p class="v">Colegio José Augusto Flores Zúñiga</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acta / día 15 -->
+        <div class="acta-wrap">
+          <img src="15 de spetiembre.png" alt="Acta de Independencia">
+        </div>
+
+        <div class="block">
+          <div class="label"><span>Día 15 · Independencia</span></div>
+          <h3 class="title">Acta de Independencia</h3>
+          <div class="meta">
+            <article>
+              <p class="k">Fecha</p>
+              <p class="v">15 de septiembre</p>
+            </article>
+            <article>
+              <p class="k">Hora</p>
+              <p class="v">7:00 a. m.</p>
+            </article>
+          </div>
+          <div class="place">
+            <div class="place-row">
+              <p class="k">Lugar</p>
+              <p class="v">Colegio José Augusto Flores Zúñiga</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-dark" type="button" onclick="verAgenda()">Ver agenda</button>
+          <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
+        </div>
+      </div>
+
+      <!-- 3. AGENDA -->
+      <div class="agenda" id="agenda">
+        <div class="agenda-card">
+          <p class="day">14 de septiembre · 7:00 a. m.</p>
+          <h3>Desfile · San Jacinto</h3>
+          <p>Salida desde El Hatillo. Punto de reunión: Colegio José Augusto Flores Zúñiga.</p>
+        </div>
+        <div class="agenda-card">
+          <p class="day">15 de septiembre · 7:00 a. m.</p>
+          <h3>Acta de Independencia</h3>
+          <p>Actividad en el Colegio José Augusto Flores Zúñiga.</p>
+        </div>
+        <div class="actions" style="padding:.4rem 0 0">
+          <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
+        </div>
+      </div>
     </article>
   </div>
 
   <audio id="bgMusic" src="Nicaragua_Mía.mp3" loop></audio>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="portada.js"></script>
-  <script src="principal.js"></script>
-  <script src="agenda.js"></script>
   <script>
-    document.getElementById("part-portada").innerHTML = window.PORTADA;
-    document.getElementById("part-principal").innerHTML = window.PRINCIPAL;
-    document.getElementById("part-agenda").innerHTML = window.AGENDA;
-
     const cover = document.getElementById("cover");
     const letter = document.getElementById("letter");
     const details = document.getElementById("details");
