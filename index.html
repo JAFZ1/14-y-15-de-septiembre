@@ -94,7 +94,6 @@
       .cover-seal {
         width: 42px !important;
         height: 42px !important;
-        font-size: 0.85rem !important;
         top: 18% !important;
       }
 
@@ -230,17 +229,20 @@
       left: 50%;
       transform: translate(-50%, -30%);
       z-index: 3;
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #226dcc, #0047ab);
+      background: #ffffff;
       box-shadow: 0 8px 22px rgba(0,71,171,.55);
       display: grid;
       place-items: center;
-      font-family: "Fraunces", serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: #ffffff;
+    }
+
+    .cover-seal img {
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      display: block;
     }
 
     .cover-body {
@@ -257,13 +259,14 @@
     }
 
     .eyebrow {
-      display: inline-block;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #bcd9f2;
+      display: block;
+      font-size: .98rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #dcecff;
       margin-bottom: .55rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,.65), 0 0 3px rgba(0,0,0,.5);
     }
 
     .cover h1 {
@@ -273,14 +276,16 @@
       line-height: 1.05;
       margin-bottom: .55rem;
       max-width: 11ch;
+      text-shadow: 0 3px 14px rgba(0,0,0,.7), 0 0 4px rgba(0,0,0,.55);
     }
 
     .cover p {
       font-size: clamp(0.9rem, 3.6cqi, 1.05rem);
       line-height: 1.45;
-      color: rgba(247,241,232,.85);
+      color: rgba(247,241,232,.95);
       max-width: 28ch;
       margin-bottom: 1.2rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.7);
     }
 
     .open-btn {
@@ -621,192 +626,110 @@
     }
 
     .agenda-card + .agenda-card p { color: var(--soft); }
+
+    /* ===== PARTES CARGADAS (no afectan al layout) ===== */
+    #part-portada, #part-principal, #part-agenda { display: contents; }
   </style>
 </head>
 <body>
   <div class="stage" id="stage">
-    <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
-    <div class="book">
-      <section class="cover" id="cover">
-        <div class="book-pages" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="cover-front">
-          <div class="cover-img">
-            <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
-          </div>
-          <div class="cover-shade"></div>
-          <div class="cover-flap" aria-hidden="true"></div>
-          <div class="cover-seal" aria-hidden="true">14</div>
-          <div class="page-shade" aria-hidden="true"></div>
-          <div class="cover-body">
-            <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
-            <h1>14 y 15 de Septiembre</h1>
-            <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
-            <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
-          </div>
-        </div>
-      </section>
-    </div>
+    <!-- 1. PORTADA -->
+    <div id="part-portada"></div>
 
-    <!-- 2 y 3. CARTA / CONTENIDO -->
+    <!-- 2 y 3. CARTA / CONTENIDO + AGENDA -->
     <article class="letter" id="letter">
-      <header class="letter-top">
-        <img class="logo" src="ni.jpg" alt="Logo Colegio José Augusto Flores Zúñiga">
-      </header>
-
-      <div class="details" id="details">
-        <div class="fade-top" aria-hidden="true"></div>
-
-        <!-- Contenido principal: 14 -->
-        <div class="photo-wrap">
-          <img class="photo" src="14 de septimbre.jpg" alt="14 de septiembre — Batalla de San Jacinto">
-        </div>
-
-        <div class="block">
-          <div class="label"><span>Día 14 · San Jacinto</span></div>
-          <h3 class="title">Desfile patriótico</h3>
-          <div class="meta">
-            <article>
-              <p class="k">Fecha</p>
-              <p class="v">14 de septiembre</p>
-            </article>
-            <article>
-              <p class="k">Hora</p>
-              <p class="v">7:00 a. m.</p>
-            </article>
-          </div>
-          <div class="place">
-            <div class="place-row">
-              <p class="k">Salida</p>
-              <p class="v">El Hatillo</p>
-            </div>
-            <div class="place-row">
-              <p class="k">Punto de reunión</p>
-              <p class="v">Colegio José Augusto Flores Zúñiga</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Acta / día 15 -->
-        <div class="acta-wrap">
-          <img src="15 de spetiembre.png" alt="Acta de Independencia">
-        </div>
-
-        <div class="block">
-          <div class="label"><span>Día 15 · Independencia</span></div>
-          <h3 class="title">Acta de Independencia</h3>
-          <div class="meta">
-            <article>
-              <p class="k">Fecha</p>
-              <p class="v">15 de septiembre</p>
-            </article>
-            <article>
-              <p class="k">Hora</p>
-              <p class="v">7:00 a. m.</p>
-            </article>
-          </div>
-          <div class="place">
-            <div class="place-row">
-              <p class="k">Lugar</p>
-              <p class="v">Colegio José Augusto Flores Zúñiga</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="btn btn-dark" type="button" onclick="verAgenda()">Ver agenda</button>
-          <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
-        </div>
-      </div>
-
-      <div class="agenda" id="agenda">
-        <div class="agenda-card">
-          <p class="day">14 de septiembre · 7:00 a. m.</p>
-          <h3>Desfile · San Jacinto</h3>
-          <p>Salida desde El Hatillo. Punto de reunión: Colegio José Augusto Flores Zúñiga.</p>
-        </div>
-        <div class="agenda-card">
-          <p class="day">15 de septiembre · 7:00 a. m.</p>
-          <h3>Acta de Independencia</h3>
-          <p>Actividad en el Colegio José Augusto Flores Zúñiga.</p>
-        </div>
-        <div class="actions" style="padding:.4rem 0 0">
-          <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
-        </div>
-      </div>
+      <div id="part-principal"></div>
+      <div id="part-agenda"></div>
     </article>
   </div>
 
   <audio id="bgMusic" src="Nicaragua_Mía.mp3" loop></audio>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    const cover = document.getElementById("cover");
-    const letter = document.getElementById("letter");
-    const details = document.getElementById("details");
-    const agenda = document.getElementById("agenda");
-    const fadeTop = document.querySelector(".fade-top");
-    const bgMusic = document.getElementById("bgMusic");
-    let abriendo = false;
-
-    details.addEventListener("scroll", () => {
-      fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
-    }, { passive: true });
-
-    function stopMusic() {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
+    async function cargarPartes() {
+      const [portada, principal, agendaHtml] = await Promise.all([
+        fetch("portada.html").then(r => r.text()),
+        fetch("principal.html").then(r => r.text()),
+        fetch("agenda.html").then(r => r.text())
+      ]);
+      document.getElementById("part-portada").innerHTML = portada;
+      document.getElementById("part-principal").innerHTML = principal;
+      document.getElementById("part-agenda").innerHTML = agendaHtml;
+      iniciar();
     }
 
-    function abrir() {
-      if (abriendo) return;
-      abriendo = true;
+    function iniciar() {
+      const cover = document.getElementById("cover");
+      const letter = document.getElementById("letter");
+      const details = document.getElementById("details");
+      const agenda = document.getElementById("agenda");
+      const fadeTop = document.querySelector(".fade-top");
+      const bgMusic = document.getElementById("bgMusic");
+      let abriendo = false;
 
-      bgMusic.volume = 0.05;
-      bgMusic.play().catch(() => {});
+      details.addEventListener("scroll", () => {
+        fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
+      }, { passive: true });
 
-      setTimeout(() => cover.classList.add("turning"), 60);
+      window.stopMusic = function () {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+      };
 
-      setTimeout(() => {
-        letter.classList.add("show");
-        confetti({
-          particleCount: 95,
-          spread: 72,
-          origin: { y: 0.55 },
-          colors: ["#1f5c45", "#c4783b", "#e0a066", "#f7f1e8"]
-        });
-      }, 880);
+      window.abrir = function () {
+        if (abriendo) return;
+        abriendo = true;
 
-      setTimeout(() => {
-        cover.classList.add("out");
+        bgMusic.volume = 0.05;
+        bgMusic.play().catch(() => {});
+
+        setTimeout(() => cover.classList.add("turning"), 60);
+
+        setTimeout(() => {
+          letter.classList.add("show");
+          confetti({
+            particleCount: 95,
+            spread: 72,
+            origin: { y: 0.55 },
+            colors: ["#1f5c45", "#c4783b", "#e0a066", "#f7f1e8"]
+          });
+        }, 880);
+
+        setTimeout(() => {
+          cover.classList.add("out");
+          abriendo = false;
+        }, 1500);
+      };
+
+      window.inicio = function () {
+        details.scrollTop = 0;
+        details.classList.remove("off");
+        agenda.classList.remove("on");
+        agenda.scrollTop = 0;
+        fadeTop.style.opacity = "0";
+        letter.classList.remove("show");
+        cover.classList.remove("out");
+        verDetalle();
         abriendo = false;
-      }, 1500);
+        stopMusic();
+        setTimeout(() => cover.classList.remove("turning"), 80);
+      };
+
+      window.verAgenda = function () {
+        details.classList.add("off");
+        agenda.classList.add("on");
+        agenda.scrollTop = 0;
+      };
+
+      window.verDetalle = function () {
+        agenda.classList.remove("on");
+        details.classList.remove("off");
+        details.scrollTop = 0;
+        fadeTop.style.opacity = "0";
+      };
     }
 
-    function inicio() {
-      details.scrollTop = 0;
-      details.classList.remove("off");
-      agenda.classList.remove("on");
-      agenda.scrollTop = 0;
-      fadeTop.style.opacity = "0";
-      letter.classList.remove("show");
-      cover.classList.remove("out");
-      verDetalle();
-      abriendo = false;
-      stopMusic();
-      setTimeout(() => cover.classList.remove("turning"), 80);
-    }
-
-    function verAgenda() {
-      details.classList.add("off");
-      agenda.classList.add("on");
-      agenda.scrollTop = 0;
-    }
-
-    function verDetalle() {
-      agenda.classList.remove("on");
-      details.classList.remove("off");
-      details.scrollTop = 0;
-      fadeTop.style.opacity = "0";
-    }
+    cargarPartes().catch(e => console.error("Error cargando partes:", e));
   </script>
 </body>
 </html>

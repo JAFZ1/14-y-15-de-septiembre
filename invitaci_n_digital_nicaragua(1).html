@@ -81,7 +81,6 @@
       .cover-seal {
         width: 42px !important;
         height: 42px !important;
-        font-size: 0.85rem !important;
         top: 18% !important;
       }
 
@@ -156,17 +155,20 @@
       left: 50%;
       transform: translate(-50%, -30%);
       z-index: 3;
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #226dcc, #0047ab);
+      background: #ffffff;
       box-shadow: 0 8px 22px rgba(0,71,171,.55);
       display: grid;
       place-items: center;
-      font-family: "Fraunces", serif;
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: #ffffff;
+    }
+
+    .cover-seal img {
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      display: block;
     }
 
     .cover-body {
@@ -183,13 +185,14 @@
     }
 
     .eyebrow {
-      display: inline-block;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #bcd9f2;
+      display: block;
+      font-size: .98rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #dcecff;
       margin-bottom: .55rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,.65), 0 0 3px rgba(0,0,0,.5);
     }
 
     .cover h1 {
@@ -199,14 +202,16 @@
       line-height: 1.05;
       margin-bottom: .55rem;
       max-width: 11ch;
+      text-shadow: 0 3px 14px rgba(0,0,0,.7), 0 0 4px rgba(0,0,0,.55);
     }
 
     .cover p {
       font-size: clamp(0.9rem, 3.6cqi, 1.05rem);
       line-height: 1.45;
-      color: rgba(247,241,232,.85);
+      color: rgba(247,241,232,.95);
       max-width: 28ch;
       margin-bottom: 1.2rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.7);
     }
 
     .open-btn {
@@ -651,11 +656,11 @@
       </div>
       <div class="cover-shade"></div>
       <div class="cover-flap" aria-hidden="true"></div>
-      <div class="cover-seal" aria-hidden="true">14</div>
+      <div class="cover-seal" aria-hidden="true"><img src="fotos/escudo-de-nicaragua-logo-vector-free-download-11574123120it1a0gabhi-3433181958-removebg-preview.png" alt="Escudo de Nicaragua"></div>
       <div class="cover-body">
-        <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
-        <h1>14 y 15 de Septiembre</h1>
-        <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
+<h1>14 de septiembre</h1>
+              <span class="eyebrow">El Colegio Público José Augusto Flores Zúñiga</span>
+              <p>Te invita a celebrar la Batalla de San Jacinto.</p>
         <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
       </div>
     </section>
