@@ -40,17 +40,26 @@
       overscroll-behavior-y: none;
     }
 
-    /* Cuadro responsive: se adapta a vertical y horizontal */
+    /* Cuadro responsive: portada cuadrada + carta a todo el alto */
     .stage {
       --side: min(92vw, 88svh, 560px);
       width: var(--side);
-      height: var(--side);
+      height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1.2rem);
+      height: Min(calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 1.2rem), 760px);
       max-width: 100%;
-      max-height: 100svh;
       position: relative;
+      display: grid;
+      place-items: center;
       container-type: size;
       perspective: 1600px;
       overflow: visible;
+    }
+
+    .book {
+      position: relative;
+      width: var(--side);
+      height: var(--side);
+      transform-style: preserve-3d;
     }
 
     @media (orientation: landscape) {
@@ -94,8 +103,10 @@
         font-size: 0.78rem !important;
       }
 
-      .photo-wrap { height: 38% !important; min-height: 120px; }
-      .acta-wrap { height: 32% !important; min-height: 100px; }
+      .photo-wrap { flex: 1.2 !important; height: auto !important; min-height: 70px; }
+      .acta-wrap { flex: 1 !important; height: auto !important; min-height: 55px; }
+      .block { padding: 0.7rem 1rem 0 !important; }
+      .details .meta, .details .place { padding: 0.65rem 0.6rem !important; }
     }
 
     /* ===== PORTADA / LIBRO CERRADO ===== */
@@ -302,14 +313,14 @@
     .letter {
       position: absolute;
       inset: 0;
-      display: block;
+      display: flex;
+      flex-direction: column;
       width: 100%;
       height: 100%;
       background: var(--papel);
       border-radius: clamp(14px, 3.5%, 22px);
       overflow: hidden;
       box-shadow: 0 28px 70px rgba(0,0,0,.45);
-      overflow-y: auto;
       overscroll-behavior: contain;
       opacity: 0;
       visibility: hidden;
@@ -333,8 +344,9 @@
       background: linear-gradient(160deg, var(--verde-oscuro), var(--verde));
       color: #f7f1e8;
       text-align: center;
-      padding: clamp(0.85rem, 3.5cqi, 1.35rem) clamp(0.8rem, 3cqi, 1.1rem) clamp(0.75rem, 3cqi, 1.1rem);
+      padding: clamp(0.7rem, 3cqi, 1.35rem) clamp(0.8rem, 3cqi, 1.1rem) clamp(0.65rem, 2.6cqi, 1.1rem);
       position: relative;
+      flex: none;
     }
 
     .letter-top::after {
@@ -365,7 +377,8 @@
 
     .photo-wrap {
       width: 100%;
-      height: clamp(140px, 42%, 260px);
+      flex: 1.4;
+      min-height: 90px;
       overflow: hidden;
       background: #2a231c;
       margin-top: 12px;
@@ -392,7 +405,7 @@
       100% { transform: scale(1.08) translate(-1%,1%); }
     }
 
-    .block { padding: 1.15rem 1.15rem 0; }
+    .block { padding: .95rem 1.15rem 0; }
 
     .label {
       display: flex;
@@ -418,9 +431,9 @@
 
     .title {
       font-family: "Fraunces", serif;
-      font-size: 1.5rem;
+      font-size: clamp(1.15rem, 5.6cqi, 1.5rem);
       font-weight: 700;
-      margin-bottom: .85rem;
+      margin-bottom: .7rem;
       line-height: 1.15;
     }
 
@@ -462,11 +475,12 @@
     }
 
     .acta-wrap {
+      flex: 1;
+      min-height: 70px;
       margin: 1rem clamp(0.85rem, 3.5%, 1.15rem) 0;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--line);
-      height: clamp(120px, 34%, 210px);
       box-shadow: 0 10px 24px rgba(28,23,18,.08);
     }
 
@@ -479,8 +493,20 @@
       animation: float-soft 18s ease-in-out infinite alternate;
     }
 
+    .details {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .details::-webkit-scrollbar { width: 0; }
+
     .actions {
-      padding: 1.15rem 1.15rem 1.4rem;
+      margin-top: auto;
+      padding: 1rem 1.15rem 1.2rem;
       display: grid;
       gap: .5rem;
     }
@@ -503,17 +529,32 @@
     .btn-soft { background: var(--chip); color: var(--ink); }
     .btn:active { transform: scale(.98); }
 
-    .agenda { padding: 1.15rem; display: none; }
-    .agenda.on { display: block; }
+    .agenda {
+      padding: 1.15rem;
+      display: none;
+      flex: 1;
+      min-height: 0;
+      flex-direction: column;
+      gap: .65rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .agenda.on { display: flex; }
     .details.off { display: none; }
 
     .agenda-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 1rem;
-      margin-bottom: .65rem;
     }
+
+    .agenda .actions { margin-top: auto; padding: .4rem 0 0; }
 
     .agenda-card .day {
       font-size: .72rem;
@@ -526,12 +567,12 @@
 
     .agenda-card h3 {
       font-family: "Fraunces", serif;
-      font-size: 1.3rem;
+      font-size: clamp(1.1rem, 4.6cqi, 1.3rem);
       margin-bottom: .35rem;
     }
 
     .agenda-card p {
-      font-size: .95rem;
+      font-size: clamp(0.85rem, 3.4cqi, 0.95rem);
       color: var(--soft);
       line-height: 1.45;
     }
@@ -540,24 +581,26 @@
 <body>
   <div class="stage" id="stage">
     <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
-    <section class="cover" id="cover">
-      <div class="book-pages" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="cover-front">
-        <div class="cover-img">
-          <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
+    <div class="book">
+      <section class="cover" id="cover">
+        <div class="book-pages" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="cover-front">
+          <div class="cover-img">
+            <img src="guardabarranco.jpg" alt="Guardabarranco — ave nacional de Nicaragua">
+          </div>
+          <div class="cover-shade"></div>
+          <div class="cover-flap" aria-hidden="true"></div>
+          <div class="cover-seal" aria-hidden="true">14</div>
+          <div class="page-shade" aria-hidden="true"></div>
+          <div class="cover-body">
+            <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
+            <h1>14 y 15 de Septiembre</h1>
+            <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
+            <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
+          </div>
         </div>
-        <div class="cover-shade"></div>
-        <div class="cover-flap" aria-hidden="true"></div>
-        <div class="cover-seal" aria-hidden="true">14</div>
-        <div class="page-shade" aria-hidden="true"></div>
-        <div class="cover-body">
-          <span class="eyebrow">Colegio J. A. Flores Zúñiga</span>
-          <h1>14 y 15 de Septiembre</h1>
-          <p>Te invitamos a celebrar San Jacinto y nuestra Independencia.</p>
-          <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- 2 y 3. CARTA / CONTENIDO -->
     <article class="letter" id="letter">
