@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación · 14 y 15 de Septiembre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Figtree:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #14110f;
@@ -21,8 +24,16 @@
       --chip: #efe6d8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 106%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 106%;
+    }
 
     body {
       min-height: 100svh;
@@ -30,8 +41,8 @@
       font-family: "Figtree", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(ellipse 70% 45% at 50% 0%, rgba(196,120,59,.16), transparent 55%),
-        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(31,92,69,.18), transparent 50%),
+        radial-gradient(ellipse 70% 45% at 50% 0%, rgba(196, 120, 59, .16), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(31, 92, 69, .18), transparent 50%),
         var(--bg);
       display: grid;
       place-items: center;
@@ -102,10 +113,26 @@
         font-size: 0.78rem !important;
       }
 
-      .photo-wrap { flex: 1.5 !important; height: auto !important; min-height: 150px; }
-      .acta-wrap { flex: 1.2 !important; height: auto !important; min-height: 120px; }
-      .block { padding: 0.7rem 1rem 0 !important; }
-      .details .meta, .details .place { padding: 0.65rem 0.6rem !important; }
+      .photo-wrap {
+        flex: 1.5 !important;
+        height: auto !important;
+        min-height: 150px;
+      }
+
+      .acta-wrap {
+        flex: 1.2 !important;
+        height: auto !important;
+        min-height: 120px;
+      }
+
+      .block {
+        padding: 0.7rem 1rem 0 !important;
+      }
+
+      .details .meta,
+      .details .place {
+        padding: 0.65rem 0.6rem !important;
+      }
     }
 
     /* ===== PORTADA / LIBRO CERRADO ===== */
@@ -116,18 +143,18 @@
       height: 100%;
       border-radius: clamp(14px, 3.5%, 22px);
       color: #f7f1e8;
-      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .45);
       transform-style: preserve-3d;
       transform-origin: left center;
       will-change: transform;
       z-index: 20;
-      transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .3s ease;
+      transition: transform .6s cubic-bezier(.22, 1, .36, 1), box-shadow .3s ease;
     }
 
     .cover.turning {
       transition: transform 1.15s cubic-bezier(.3, .6, .2, 1), box-shadow .5s ease;
       transform: rotateY(-180deg);
-      box-shadow: -34px 20px 64px rgba(0,0,0,.45);
+      box-shadow: -34px 20px 64px rgba(0, 0, 0, .45);
       pointer-events: none;
     }
 
@@ -136,7 +163,7 @@
       transform: translateY(22px) rotateY(-180deg);
       visibility: hidden;
       pointer-events: none;
-      transition: opacity .35s ease, transform .55s cubic-bezier(.22,1,.36,1), visibility 0s linear .6s;
+      transition: opacity .35s ease, transform .55s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .6s;
     }
 
     /* Sombra que recorre la hoja mientras gira */
@@ -146,13 +173,16 @@
       z-index: 6;
       pointer-events: none;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.28), rgba(0,0,0,.05) 30%, transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.14), transparent 40%);
+        linear-gradient(90deg, rgba(0, 0, 0, .28), rgba(0, 0, 0, .05) 30%, transparent 55%),
+        linear-gradient(180deg, rgba(0, 0, 0, .14), transparent 40%);
       opacity: .8;
     }
 
     .cover.turning .page-shade,
-    .cover.out .page-shade { opacity: 0; transition: opacity .5s ease .05s; }
+    .cover.out .page-shade {
+      opacity: 0;
+      transition: opacity .5s ease .05s;
+    }
 
     /* Bloque de páginas que asoma por el canto del libro */
     .book-pages {
@@ -169,11 +199,17 @@
       inset: 0;
       border-radius: inherit;
       background: linear-gradient(160deg, #f2ead9, #e0d2b6);
-      box-shadow: 0 0 0 1px rgba(90,70,40,.07);
+      box-shadow: 0 0 0 1px rgba(90, 70, 40, .07);
     }
 
-    .book-pages i:nth-child(2) { transform: translate(5px, 5px); }
-    .book-pages i:nth-child(3) { transform: translate(8px, 8px); opacity: .6; }
+    .book-pages i:nth-child(2) {
+      transform: translate(5px, 5px);
+    }
+
+    .book-pages i:nth-child(3) {
+      transform: translate(8px, 8px);
+      opacity: .6;
+    }
 
     .cover-front {
       position: absolute;
@@ -182,7 +218,7 @@
       border-radius: inherit;
       overflow: hidden;
       background: #2a231c;
-      box-shadow: inset 8px 0 10px -6px rgba(0,0,0,.5);
+      box-shadow: inset 8px 0 10px -6px rgba(0, 0, 0, .5);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
@@ -201,23 +237,30 @@
     }
 
     @keyframes drift {
-      from { transform: scale(1.06) translate(0,0); }
-      to { transform: scale(1.14) translate(-1.5%,-2%); }
+      from {
+        transform: scale(1.06) translate(0, 0);
+      }
+
+      to {
+        transform: scale(1.14) translate(-1.5%, -2%);
+      }
     }
 
     .cover-shade {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(0,73,171,.25) 0%, rgba(0,73,171,.3) 40%, rgba(1,28,84,.95) 100%);
+        linear-gradient(180deg, rgba(0, 73, 171, .25) 0%, rgba(0, 73, 171, .3) 40%, rgba(1, 28, 84, .95) 100%);
     }
 
     /* Solapa decorativa del sobre en portada */
     .cover-flap {
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 28%;
-      background: linear-gradient(180deg, rgba(0,73,171,.65), rgba(0,73,171,.1));
+      background: linear-gradient(180deg, rgba(0, 73, 171, .65), rgba(0, 73, 171, .1));
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       z-index: 2;
       pointer-events: none;
@@ -233,7 +276,7 @@
       height: 72px;
       border-radius: 50%;
       background: #ffffff;
-      box-shadow: 0 8px 22px rgba(0,71,171,.55);
+      box-shadow: 0 8px 22px rgba(0, 71, 171, .55);
       display: grid;
       place-items: center;
     }
@@ -247,15 +290,24 @@
 
     .cover-body {
       position: absolute;
-      left: 0; right: 0; bottom: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       z-index: 4;
       padding: clamp(0.9rem, 3.5%, 1.5rem) clamp(0.9rem, 3.5%, 1.35rem) clamp(1rem, 4%, 1.7rem);
-      animation: up .9s cubic-bezier(.22,1,.36,1) both;
+      animation: up .9s cubic-bezier(.22, 1, .36, 1) both;
     }
 
     @keyframes up {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .eyebrow {
@@ -266,7 +318,7 @@
       text-transform: none;
       color: #dcecff;
       margin-bottom: .55rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,.65), 0 0 3px rgba(0,0,0,.5);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .65), 0 0 3px rgba(0, 0, 0, .5);
     }
 
     .cover h1 {
@@ -276,16 +328,16 @@
       line-height: 1.05;
       margin-bottom: .55rem;
       max-width: 11ch;
-      text-shadow: 0 3px 14px rgba(0,0,0,.7), 0 0 4px rgba(0,0,0,.55);
+      text-shadow: 0 3px 14px rgba(0, 0, 0, .7), 0 0 4px rgba(0, 0, 0, .55);
     }
 
     .cover p {
       font-size: clamp(0.9rem, 3.6cqi, 1.05rem);
       line-height: 1.45;
-      color: rgba(247,241,232,.95);
+      color: rgba(247, 241, 232, .95);
       max-width: 28ch;
       margin-bottom: 1.2rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,.9), 0 0 6px rgba(0,0,0,.7);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .9), 0 0 6px rgba(0, 0, 0, .7);
     }
 
     .open-btn {
@@ -301,17 +353,26 @@
       cursor: pointer;
       color: #ffffff;
       background: linear-gradient(135deg, #226dcc, #0047ab);
-      box-shadow: 0 12px 28px rgba(0,71,171,.55);
+      box-shadow: 0 12px 28px rgba(0, 71, 171, .55);
       animation: pulse 2.4s ease-in-out infinite;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .open-btn:active { transform: scale(.98); }
+    .open-btn:active {
+      transform: scale(.98);
+    }
 
     @keyframes pulse {
-      0%,100% { box-shadow: 0 12px 28px rgba(0,71,171,.45); }
-      50% { box-shadow: 0 14px 36px rgba(0,71,171,.7); }
+
+      0%,
+      100% {
+        box-shadow: 0 12px 28px rgba(0, 71, 171, .45);
+      }
+
+      50% {
+        box-shadow: 0 14px 36px rgba(0, 71, 171, .7);
+      }
     }
 
     /* ===== CONTENIDO / PÁGINA INTERIOR ===== */
@@ -325,24 +386,26 @@
       background: var(--papel);
       border-radius: clamp(14px, 3.5%, 22px);
       overflow: hidden;
-      box-shadow: 0 28px 70px rgba(0,0,0,.45);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, .45);
       overscroll-behavior: contain;
       opacity: 0;
       visibility: hidden;
       z-index: 10;
       transform: rotateX(9deg) translateY(28px) scale(.97);
       transform-origin: 50% 0%;
-      transition: opacity .4s ease, transform .65s cubic-bezier(.19,1,.28,1), visibility 0s linear .5s;
+      transition: opacity .4s ease, transform .65s cubic-bezier(.19, 1, .28, 1), visibility 0s linear .5s;
       container-type: size;
     }
 
-    .letter::-webkit-scrollbar { width: 0; }
+    .letter::-webkit-scrollbar {
+      width: 0;
+    }
 
     .letter.show {
       opacity: 1;
       visibility: visible;
       transform: rotateX(0deg) translateY(0) scale(1);
-      transition: opacity .4s ease, transform .65s cubic-bezier(.19,1,.28,1), visibility 0s;
+      transition: opacity .4s ease, transform .65s cubic-bezier(.19, 1, .28, 1), visibility 0s;
     }
 
     .letter-top {
@@ -365,7 +428,9 @@
     .letter-top::after {
       content: "";
       position: absolute;
-      left: 0; right: 0; bottom: -12px;
+      left: 0;
+      right: 0;
+      bottom: -12px;
       height: 24px;
       background: linear-gradient(160deg, #0f5fa8, #0c4f8d);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
@@ -407,18 +472,36 @@
     }
 
     @keyframes pan-soft {
-      0%   { transform: scale(1.08) translate(0,0); }
-      50%  { transform: scale(1.14) translate(-2%,-1.5%); }
-      100% { transform: scale(1.1) translate(1.5%,-2%); }
+      0% {
+        transform: scale(1.08) translate(0, 0);
+      }
+
+      50% {
+        transform: scale(1.14) translate(-2%, -1.5%);
+      }
+
+      100% {
+        transform: scale(1.1) translate(1.5%, -2%);
+      }
     }
 
     @keyframes float-soft {
-      0%   { transform: scale(1.06) translate(0,0); }
-      50%  { transform: scale(1.12) translate(1.5%,-1%); }
-      100% { transform: scale(1.08) translate(-1%,1%); }
+      0% {
+        transform: scale(1.06) translate(0, 0);
+      }
+
+      50% {
+        transform: scale(1.12) translate(1.5%, -1%);
+      }
+
+      100% {
+        transform: scale(1.08) translate(-1%, 1%);
+      }
     }
 
-    .block { padding: .85rem 1.15rem 0; }
+    .block {
+      padding: .85rem 1.15rem 0;
+    }
 
     .label {
       display: flex;
@@ -460,12 +543,13 @@
     .meta article,
     .place {
       background: #0f5fa8;
-      border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 14px;
       padding: .7rem .7rem;
     }
 
-    .meta .k, .place .k {
+    .meta .k,
+    .place .k {
       font-size: .7rem;
       font-weight: 800;
       letter-spacing: .14em;
@@ -474,18 +558,22 @@
       margin-bottom: .2rem;
     }
 
-    .meta .v, .place .v {
+    .meta .v,
+    .place .v {
       font-size: 1rem;
       font-weight: 700;
       line-height: 1.3;
       color: #ffffff;
     }
 
-    .place { display: grid; gap: .65rem; }
+    .place {
+      display: grid;
+      gap: .65rem;
+    }
 
-    .place-row + .place-row {
+    .place-row+.place-row {
       padding-top: .65rem;
-      border-top: 1px solid rgba(255,255,255,.2);
+      border-top: 1px solid rgba(255, 255, 255, .2);
     }
 
     .acta-wrap {
@@ -495,7 +583,7 @@
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--line);
-      box-shadow: 0 10px 24px rgba(28,23,18,.08);
+      box-shadow: 0 10px 24px rgba(28, 23, 18, .08);
     }
 
     .acta-wrap img {
@@ -507,17 +595,17 @@
       animation: float-soft 18s ease-in-out infinite alternate;
     }
 
-        .fade-top {
-          flex: none;
-          height: 48px;
-          margin-bottom: -48px;
-          position: sticky;
-          top: 0;
-          z-index: 5;
-          pointer-events: none;
-          opacity: 0;
-          background: linear-gradient(180deg, #8b0000 0%, rgba(139,0,0,0) 100%);
-        }
+    .fade-top {
+      flex: none;
+      height: 48px;
+      margin-bottom: -48px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(180deg, #8b0000 0%, rgba(139, 0, 0, 0) 100%);
+    }
 
     .details {
       flex: 1;
@@ -528,7 +616,9 @@
       overscroll-behavior: contain;
     }
 
-    .details::-webkit-scrollbar { width: 0; }
+    .details::-webkit-scrollbar {
+      width: 0;
+    }
 
     .actions {
       margin-top: auto;
@@ -551,9 +641,19 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .btn-dark { background: #0f5fa8; color: #ffffff; }
-    .btn-soft { background: var(--chip); color: var(--ink); }
-    .btn:active { transform: scale(.98); }
+    .btn-dark {
+      background: #0f5fa8;
+      color: #ffffff;
+    }
+
+    .btn-soft {
+      background: var(--chip);
+      color: var(--ink);
+    }
+
+    .btn:active {
+      transform: scale(.98);
+    }
 
     .agenda {
       padding: 1.15rem;
@@ -578,8 +678,13 @@
       pointer-events: none;
     }
 
-    .agenda.on { display: flex; }
-    .details.off { display: none; }
+    .agenda.on {
+      display: flex;
+    }
+
+    .details.off {
+      display: none;
+    }
 
     .agenda-card {
       flex: 1;
@@ -587,17 +692,20 @@
       flex-direction: column;
       justify-content: center;
       background: #0f5fa8;
-      border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 16px;
       padding: 1rem;
     }
 
-    .agenda-card + .agenda-card {
+    .agenda-card+.agenda-card {
       background: #ffffff;
       border: 1px solid #bcd7ee;
     }
 
-    .agenda .actions { margin-top: auto; padding: .4rem 0 0; }
+    .agenda .actions {
+      margin-top: auto;
+      padding: .4rem 0 0;
+    }
 
     .agenda-card .day {
       font-size: .78rem;
@@ -608,7 +716,9 @@
       margin-bottom: .25rem;
     }
 
-    .agenda-card + .agenda-card .day { color: #0f5fa8; }
+    .agenda-card+.agenda-card .day {
+      color: #0f5fa8;
+    }
 
     .agenda-card h3 {
       font-family: "Fraunces", serif;
@@ -617,7 +727,9 @@
       color: #ffffff;
     }
 
-    .agenda-card + .agenda-card h3 { color: var(--ink); }
+    .agenda-card+.agenda-card h3 {
+      color: var(--ink);
+    }
 
     .agenda-card p {
       font-size: clamp(0.95rem, 3.6cqi, 1.05rem);
@@ -625,9 +737,12 @@
       line-height: 1.45;
     }
 
-    .agenda-card + .agenda-card p { color: var(--soft); }
+    .agenda-card+.agenda-card p {
+      color: var(--soft);
+    }
   </style>
 </head>
+
 <body>
   <div class="stage" id="stage">
     <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
@@ -640,11 +755,13 @@
           </div>
           <div class="cover-shade"></div>
           <div class="cover-flap" aria-hidden="true"></div>
-          <div class="cover-seal" aria-hidden="true"><img src="fotos/escudo-de-nicaragua-logo-vector-free-download-11574123120it1a0gabhi-3433181958-removebg-preview.png" alt="Escudo de Nicaragua"></div>
+          <div class="cover-seal" aria-hidden="true"><img
+              src="fotos/escudo-de-nicaragua-logo-vector-free-download-11574123120it1a0gabhi-3433181958-removebg-preview.png"
+              alt="Escudo de Nicaragua"></div>
           <div class="page-shade" aria-hidden="true"></div>
           <div class="cover-body">
             <h1>14 de septiembre</h1>
-            <span class="eyebrow">El Colegio Público José Augusto Flores Zúniga</span>
+            <span class="eyebrow">El Colegio Público José Augusto Flores Zúñiga</span>
             <p>Te invita a celebrar la Batalla de San Jacinto.</p>
             <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
           </div>
@@ -676,7 +793,7 @@
             </article>
             <article>
               <p class="k">Hora</p>
-              <p class="v">6:30 A. M.</p>
+              <p class="v">6:30 a. m.</p>
             </article>
           </div>
           <div class="place">
@@ -685,8 +802,8 @@
               <p class="v">La Hermita</p>
             </div>
             <div class="place-row">
-              <p class="k">Punto de cuminación/p>
-              <p class="v">Colegio Pùblico José Augusto Flores Zúniga</p>
+              <p class="k">Finalizamos en el</p>
+              <p class="v">Colegio José Augusto Flores Zúñiga</p>
             </div>
           </div>
         </div>
@@ -767,7 +884,7 @@
       abriendo = true;
 
       bgMusic.volume = 0.05;
-      bgMusic.play().catch(() => {});
+      bgMusic.play().catch(() => { });
 
       setTimeout(() => cover.classList.add("turning"), 60);
 
@@ -815,4 +932,5 @@
     }
   </script>
 </body>
+
 </html>
