@@ -22,7 +22,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 106%; }
 
     body {
       min-height: 100svh;
@@ -210,7 +210,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(20,17,15,.2) 0%, rgba(20,17,15,.25) 40%, rgba(20,17,15,.94) 100%);
+        linear-gradient(180deg, rgba(0,73,171,.25) 0%, rgba(0,73,171,.3) 40%, rgba(1,28,84,.95) 100%);
     }
 
     /* Solapa decorativa del sobre en portada */
@@ -218,7 +218,7 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 28%;
-      background: linear-gradient(180deg, rgba(31,92,69,.55), rgba(31,92,69,.08));
+      background: linear-gradient(180deg, rgba(0,73,171,.65), rgba(0,73,171,.1));
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       z-index: 2;
       pointer-events: none;
@@ -233,14 +233,14 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #e8b57a, var(--cobre));
-      box-shadow: 0 8px 22px rgba(196,120,59,.45);
+      background: radial-gradient(circle at 35% 30%, #226dcc, #0047ab);
+      box-shadow: 0 8px 22px rgba(0,71,171,.55);
       display: grid;
       place-items: center;
       font-family: "Fraunces", serif;
       font-weight: 900;
       font-size: 1.1rem;
-      color: var(--ink);
+      color: #ffffff;
     }
 
     .cover-body {
@@ -262,7 +262,7 @@
       font-weight: 800;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--cobre-claro);
+      color: #bcd9f2;
       margin-bottom: .55rem;
     }
 
@@ -294,9 +294,9 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       cursor: pointer;
-      color: var(--ink);
-      background: linear-gradient(135deg, #e8b57a, var(--cobre));
-      box-shadow: 0 12px 28px rgba(196,120,59,.4);
+      color: #ffffff;
+      background: linear-gradient(135deg, #226dcc, #0047ab);
+      box-shadow: 0 12px 28px rgba(0,71,171,.55);
       animation: pulse 2.4s ease-in-out infinite;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -305,8 +305,8 @@
     .open-btn:active { transform: scale(.98); }
 
     @keyframes pulse {
-      0%,100% { box-shadow: 0 12px 28px rgba(196,120,59,.35); }
-      50% { box-shadow: 0 14px 36px rgba(196,120,59,.55); }
+      0%,100% { box-shadow: 0 12px 28px rgba(0,71,171,.45); }
+      50% { box-shadow: 0 14px 36px rgba(0,71,171,.7); }
     }
 
     /* ===== CONTENIDO / PÁGINA INTERIOR ===== */
@@ -341,12 +341,20 @@
     }
 
     .letter-top {
-      background: linear-gradient(160deg, var(--verde-oscuro), var(--verde));
-      color: #f7f1e8;
       text-align: center;
-      padding: clamp(0.7rem, 3cqi, 1.35rem) clamp(0.8rem, 3cqi, 1.1rem) clamp(0.65rem, 2.6cqi, 1.1rem);
       position: relative;
       flex: none;
+      overflow: hidden;
+      line-height: 0;
+      padding-top: clamp(0.6rem, 2.5cqi, 1.1rem);
+    }
+
+    .letter-top .logo {
+      width: 100%;
+      height: clamp(110px, 33cqi, 165px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
     .letter-top::after {
@@ -354,7 +362,7 @@
       position: absolute;
       left: 0; right: 0; bottom: -12px;
       height: 24px;
-      background: linear-gradient(160deg, var(--verde), #246b50);
+      background: linear-gradient(160deg, #0f5fa8, #0c4f8d);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
     }
 
@@ -446,8 +454,8 @@
 
     .meta article,
     .place {
-      background: #fff;
-      border: 1px solid var(--line);
+      background: #0f5fa8;
+      border: 1px solid rgba(255,255,255,.2);
       border-radius: 14px;
       padding: .7rem .7rem;
     }
@@ -457,7 +465,7 @@
       font-weight: 800;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--cobre);
+      color: #e8f4ff;
       margin-bottom: .2rem;
     }
 
@@ -465,13 +473,14 @@
       font-size: 1rem;
       font-weight: 700;
       line-height: 1.3;
+      color: #ffffff;
     }
 
     .place { display: grid; gap: .65rem; }
 
     .place-row + .place-row {
       padding-top: .65rem;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,.2);
     }
 
     .acta-wrap {
@@ -493,17 +502,17 @@
       animation: float-soft 18s ease-in-out infinite alternate;
     }
 
-    .fade-top {
-      flex: none;
-      height: 48px;
-      margin-bottom: -48px;
-      position: sticky;
-      top: 0;
-      z-index: 5;
-      pointer-events: none;
-      opacity: 0;
-      background: linear-gradient(180deg, var(--papel) 0%, rgba(247,241,232,0) 100%);
-    }
+        .fade-top {
+          flex: none;
+          height: 48px;
+          margin-bottom: -48px;
+          position: sticky;
+          top: 0;
+          z-index: 5;
+          pointer-events: none;
+          opacity: 0;
+          background: linear-gradient(180deg, #8b0000 0%, rgba(139,0,0,0) 100%);
+        }
 
     .details {
       flex: 1;
@@ -537,7 +546,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .btn-dark { background: var(--verde-oscuro); color: #f7f1e8; }
+    .btn-dark { background: #0f5fa8; color: #ffffff; }
     .btn-soft { background: var(--chip); color: var(--ink); }
     .btn:active { transform: scale(.98); }
 
@@ -558,8 +567,8 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: url("fotos/logoJAFZ.jpg") center / 70% contain no-repeat;
-      opacity: .55;
+      background: url("ni.jpg") center / 70% contain no-repeat;
+      opacity: .5;
       mix-blend-mode: multiply;
       pointer-events: none;
     }
@@ -572,34 +581,46 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: #fff;
-      border: 1px solid var(--line);
+      background: #0f5fa8;
+      border: 1px solid rgba(255,255,255,.2);
       border-radius: 16px;
       padding: 1rem;
+    }
+
+    .agenda-card + .agenda-card {
+      background: #ffffff;
+      border: 1px solid #bcd7ee;
     }
 
     .agenda .actions { margin-top: auto; padding: .4rem 0 0; }
 
     .agenda-card .day {
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 800;
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: var(--cobre);
+      color: #e8f4ff;
       margin-bottom: .25rem;
     }
 
+    .agenda-card + .agenda-card .day { color: #0f5fa8; }
+
     .agenda-card h3 {
       font-family: "Fraunces", serif;
-      font-size: clamp(1.1rem, 4.6cqi, 1.3rem);
+      font-size: clamp(1.25rem, 4.8cqi, 1.5rem);
       margin-bottom: .35rem;
+      color: #ffffff;
     }
 
+    .agenda-card + .agenda-card h3 { color: var(--ink); }
+
     .agenda-card p {
-      font-size: clamp(0.85rem, 3.4cqi, 0.95rem);
-      color: var(--soft);
+      font-size: clamp(0.95rem, 3.6cqi, 1.05rem);
+      color: #f0f7ff;
       line-height: 1.45;
     }
+
+    .agenda-card + .agenda-card p { color: var(--soft); }
   </style>
 </head>
 <body>
@@ -629,8 +650,7 @@
     <!-- 2 y 3. CARTA / CONTENIDO -->
     <article class="letter" id="letter">
       <header class="letter-top">
-        <small>Fiestas patrias 2026</small>
-        <h2>Colegio José Augusto Flores Zúñiga</h2>
+        <img class="logo" src="ni.jpg" alt="Logo Colegio José Augusto Flores Zúñiga">
       </header>
 
       <div class="details" id="details">
@@ -726,25 +746,22 @@
     const fadeTop = document.querySelector(".fade-top");
     const bgMusic = document.getElementById("bgMusic");
     let abriendo = false;
-    let musicStarted = false;
 
     details.addEventListener("scroll", () => {
       fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
     }, { passive: true });
 
-    function startMusic() {
-      if (musicStarted) return;
-      musicStarted = true;
-      bgMusic.volume = 0.5;
-      bgMusic.play().catch(() => {});
+    function stopMusic() {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
     }
 
     function abrir() {
       if (abriendo) return;
       abriendo = true;
-      startMusic();
 
-      bgMusic.volume = 0.15;
+      bgMusic.volume = 0.05;
+      bgMusic.play().catch(() => {});
 
       setTimeout(() => cover.classList.add("turning"), 60);
 
@@ -774,7 +791,7 @@
       cover.classList.remove("out");
       verDetalle();
       abriendo = false;
-      bgMusic.volume = 0.5;
+      stopMusic();
       setTimeout(() => cover.classList.remove("turning"), 80);
     }
 
