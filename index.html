@@ -493,6 +493,18 @@
       animation: float-soft 18s ease-in-out infinite alternate;
     }
 
+    .fade-top {
+      flex: none;
+      height: 48px;
+      margin-bottom: -48px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      background: linear-gradient(180deg, var(--papel) 0%, rgba(247,241,232,0) 100%);
+    }
+
     .details {
       flex: 1;
       min-height: 0;
@@ -532,12 +544,23 @@
     .agenda {
       padding: 1.15rem;
       display: none;
+      position: relative;
       flex: 1;
       min-height: 0;
       flex-direction: column;
       gap: .65rem;
       overflow-y: auto;
       overscroll-behavior: contain;
+    }
+
+    .agenda::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: url("fotos/logoJAFZ.jpg") center / 62% contain no-repeat;
+      opacity: .1;
+      pointer-events: none;
     }
 
     .agenda.on { display: flex; }
@@ -610,6 +633,8 @@
       </header>
 
       <div class="details" id="details">
+        <div class="fade-top" aria-hidden="true"></div>
+
         <!-- Contenido principal: 14 -->
         <div class="photo-wrap">
           <img class="photo" src="14 de septimbre.jpg" alt="14 de septiembre — Batalla de San Jacinto">
@@ -696,7 +721,12 @@
     const letter = document.getElementById("letter");
     const details = document.getElementById("details");
     const agenda = document.getElementById("agenda");
+    const fadeTop = document.querySelector(".fade-top");
     let abriendo = false;
+
+    details.addEventListener("scroll", () => {
+      fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
+    }, { passive: true });
 
     function abrir() {
       if (abriendo) return;
@@ -721,7 +751,11 @@
     }
 
     function inicio() {
-      letter.scrollTop = 0;
+      details.scrollTop = 0;
+      details.classList.remove("off");
+      agenda.classList.remove("on");
+      agenda.scrollTop = 0;
+      fadeTop.style.opacity = "0";
       letter.classList.remove("show");
       cover.classList.remove("out");
       verDetalle();
@@ -732,12 +766,14 @@
     function verAgenda() {
       details.classList.add("off");
       agenda.classList.add("on");
-      letter.scrollTop = 0;
+      agenda.scrollTop = 0;
     }
 
     function verDetalle() {
       agenda.classList.remove("on");
       details.classList.remove("off");
+      details.scrollTop = 0;
+      fadeTop.style.opacity = "0";
     }
   </script>
 </body>
