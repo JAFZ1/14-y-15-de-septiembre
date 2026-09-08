@@ -1,3 +1,4 @@
+window.PRINCIPAL = `
 <!-- 2. INTERIOR / CONTENIDO PRINCIPAL -->
 <header class="letter-top">
   <img class="logo" src="ni.jpg" alt="Logo Colegio José Augusto Flores Zúñiga">
@@ -66,4 +67,4 @@
     <button class="btn btn-dark" type="button" onclick="verAgenda()">Ver agenda</button>
     <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
   </div>
-</div>
+</div>`;

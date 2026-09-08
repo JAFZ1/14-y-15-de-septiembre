@@ -636,7 +636,7 @@
     <!-- 1. PORTADA -->
     <div id="part-portada"></div>
 
-    <!-- 2 y 3. CARTA / CONTENIDO + AGENDA -->
+    <!-- 2 y 3. INTERIOR + AGENDA -->
     <article class="letter" id="letter">
       <div id="part-principal"></div>
       <div id="part-agenda"></div>
@@ -645,91 +645,82 @@
 
   <audio id="bgMusic" src="Nicaragua_Mía.mp3" loop></audio>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="portada.js"></script>
+  <script src="principal.js"></script>
+  <script src="agenda.js"></script>
   <script>
-    async function cargarPartes() {
-      const [portada, principal, agendaHtml] = await Promise.all([
-        fetch("portada.html").then(r => r.text()),
-        fetch("principal.html").then(r => r.text()),
-        fetch("agenda.html").then(r => r.text())
-      ]);
-      document.getElementById("part-portada").innerHTML = portada;
-      document.getElementById("part-principal").innerHTML = principal;
-      document.getElementById("part-agenda").innerHTML = agendaHtml;
-      iniciar();
+    document.getElementById("part-portada").innerHTML = window.PORTADA;
+    document.getElementById("part-principal").innerHTML = window.PRINCIPAL;
+    document.getElementById("part-agenda").innerHTML = window.AGENDA;
+
+    const cover = document.getElementById("cover");
+    const letter = document.getElementById("letter");
+    const details = document.getElementById("details");
+    const agenda = document.getElementById("agenda");
+    const fadeTop = document.querySelector(".fade-top");
+    const bgMusic = document.getElementById("bgMusic");
+    let abriendo = false;
+
+    details.addEventListener("scroll", () => {
+      fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
+    }, { passive: true });
+
+    function stopMusic() {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
     }
 
-    function iniciar() {
-      const cover = document.getElementById("cover");
-      const letter = document.getElementById("letter");
-      const details = document.getElementById("details");
-      const agenda = document.getElementById("agenda");
-      const fadeTop = document.querySelector(".fade-top");
-      const bgMusic = document.getElementById("bgMusic");
-      let abriendo = false;
+    function abrir() {
+      if (abriendo) return;
+      abriendo = true;
 
-      details.addEventListener("scroll", () => {
-        fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
-      }, { passive: true });
+      bgMusic.volume = 0.05;
+      bgMusic.play().catch(() => {});
 
-      window.stopMusic = function () {
-        bgMusic.pause();
-        bgMusic.currentTime = 0;
-      };
+      setTimeout(() => cover.classList.add("turning"), 60);
 
-      window.abrir = function () {
-        if (abriendo) return;
-        abriendo = true;
+      setTimeout(() => {
+        letter.classList.add("show");
+        confetti({
+          particleCount: 95,
+          spread: 72,
+          origin: { y: 0.55 },
+          colors: ["#1f5c45", "#c4783b", "#e0a066", "#f7f1e8"]
+        });
+      }, 880);
 
-        bgMusic.volume = 0.05;
-        bgMusic.play().catch(() => {});
-
-        setTimeout(() => cover.classList.add("turning"), 60);
-
-        setTimeout(() => {
-          letter.classList.add("show");
-          confetti({
-            particleCount: 95,
-            spread: 72,
-            origin: { y: 0.55 },
-            colors: ["#1f5c45", "#c4783b", "#e0a066", "#f7f1e8"]
-          });
-        }, 880);
-
-        setTimeout(() => {
-          cover.classList.add("out");
-          abriendo = false;
-        }, 1500);
-      };
-
-      window.inicio = function () {
-        details.scrollTop = 0;
-        details.classList.remove("off");
-        agenda.classList.remove("on");
-        agenda.scrollTop = 0;
-        fadeTop.style.opacity = "0";
-        letter.classList.remove("show");
-        cover.classList.remove("out");
-        verDetalle();
+      setTimeout(() => {
+        cover.classList.add("out");
         abriendo = false;
-        stopMusic();
-        setTimeout(() => cover.classList.remove("turning"), 80);
-      };
-
-      window.verAgenda = function () {
-        details.classList.add("off");
-        agenda.classList.add("on");
-        agenda.scrollTop = 0;
-      };
-
-      window.verDetalle = function () {
-        agenda.classList.remove("on");
-        details.classList.remove("off");
-        details.scrollTop = 0;
-        fadeTop.style.opacity = "0";
-      };
+      }, 1500);
     }
 
-    cargarPartes().catch(e => console.error("Error cargando partes:", e));
+    function inicio() {
+      details.scrollTop = 0;
+      details.classList.remove("off");
+      agenda.classList.remove("on");
+      agenda.scrollTop = 0;
+      fadeTop.style.opacity = "0";
+      letter.classList.remove("show");
+      cover.classList.remove("out");
+      verDetalle();
+      abriendo = false;
+      stopMusic();
+      setTimeout(() => cover.classList.remove("turning"), 80);
+    }
+
+    function verAgenda() {
+      details.classList.add("off");
+      agenda.classList.add("on");
+      agenda.scrollTop = 0;
+    }
+
+    function verDetalle() {
+      agenda.classList.remove("on");
+      details.classList.remove("off");
+      details.scrollTop = 0;
+      fadeTop.style.opacity = "0";
+    }
   </script>
 </body>
 </html>

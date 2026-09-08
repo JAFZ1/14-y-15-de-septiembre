@@ -1,3 +1,4 @@
+window.AGENDA = `
 <!-- 3. AGENDA -->
 <div class="agenda" id="agenda">
   <div class="agenda-card">
@@ -13,4 +14,4 @@
   <div class="actions" style="padding:.4rem 0 0">
     <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
   </div>
-</div>
+</div>`;

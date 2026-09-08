@@ -1,3 +1,4 @@
+window.PORTADA = `
 <!-- 1. PORTADA (libro cerrado + guardabarranco) -->
 <div class="book">
   <section class="cover" id="cover">
@@ -18,4 +19,4 @@
       </div>
     </div>
   </section>
-</div>
+</div>`;
