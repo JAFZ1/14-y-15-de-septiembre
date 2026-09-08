@@ -716,6 +716,7 @@
     </article>
   </div>
 
+  <audio id="bgMusic" src="Nicaragua_Mía.mp3" loop></audio>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     const cover = document.getElementById("cover");
@@ -723,15 +724,27 @@
     const details = document.getElementById("details");
     const agenda = document.getElementById("agenda");
     const fadeTop = document.querySelector(".fade-top");
+    const bgMusic = document.getElementById("bgMusic");
     let abriendo = false;
+    let musicStarted = false;
 
     details.addEventListener("scroll", () => {
       fadeTop.style.opacity = String(Math.min(1, details.scrollTop / 90));
     }, { passive: true });
 
+    function startMusic() {
+      if (musicStarted) return;
+      musicStarted = true;
+      bgMusic.volume = 0.5;
+      bgMusic.play().catch(() => {});
+    }
+
     function abrir() {
       if (abriendo) return;
       abriendo = true;
+      startMusic();
+
+      bgMusic.volume = 0.15;
 
       setTimeout(() => cover.classList.add("turning"), 60);
 
@@ -761,6 +774,7 @@
       cover.classList.remove("out");
       verDetalle();
       abriendo = false;
+      bgMusic.volume = 0.5;
       setTimeout(() => cover.classList.remove("turning"), 80);
     }
 
