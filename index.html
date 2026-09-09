@@ -879,6 +879,18 @@
       bgMusic.currentTime = 0;
     }
 
+    window.addEventListener("beforeunload", () => {
+      bgMusic.pause();
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) bgMusic.pause();
+    });
+
+    window.addEventListener("popstate", () => {
+      if (!details.classList.contains("off")) stopMusic();
+    });
+
     function abrir() {
       if (abriendo) return;
       abriendo = true;
