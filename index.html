@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación · 14 y 15 de Septiembre</title>
+  <title>Invitación · 14 de Septiembre</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -708,11 +708,6 @@
       padding: 1rem;
     }
 
-    .agenda-card+.agenda-card {
-      background: #ffffff;
-      border: 1px solid #bcd7ee;
-    }
-
     .agenda .actions {
       margin-top: auto;
       padding: .4rem 0 0;
@@ -727,10 +722,6 @@
       margin-bottom: .25rem;
     }
 
-    .agenda-card+.agenda-card .day {
-      color: #0f5fa8;
-    }
-
     .agenda-card h3 {
       font-family: "Fraunces", serif;
       font-size: clamp(1.25rem, 4.8cqi, 1.5rem);
@@ -738,18 +729,10 @@
       color: #ffffff;
     }
 
-    .agenda-card+.agenda-card h3 {
-      color: var(--ink);
-    }
-
     .agenda-card p {
       font-size: clamp(0.95rem, 3.6cqi, 1.05rem);
       color: #f0f7ff;
       line-height: 1.45;
-    }
-
-    .agenda-card+.agenda-card p {
-      color: var(--soft);
     }
 
     .agenda-list {
@@ -883,39 +866,12 @@
           </div>
         </div>
 
-        <!-- Acta / día 15 -->
-        <div class="acta-wrap">
-          <img src="15 de spetiembre.png" alt="Acta de Independencia">
-        </div>
-
-        <div class="block">
-          <div class="label"><span>Día 15 · Independencia</span></div>
-          <h3 class="title">Lectura del Acta de Independencia de Centroamérica</h3>
-          <div class="meta">
-            <article>
-              <p class="k">Fecha</p>
-              <p class="v">15 de septiembre</p>
-            </article>
-            <article>
-              <p class="k">Hora</p>
-              <p class="v">7:00 a. m.</p>
-            </article>
-          </div>
-          <div class="place">
-            <div class="place-row">
-              <p class="k">Lugar</p>
-              <p class="v">Colegio José Augusto Flores Zúniga</p>
-            </div>
-          </div>
-        </div>
-
         <div class="actions">
-          <button class="btn btn-dark" type="button" onclick="verAgenda15()">Ver agenda del 15</button>
           <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
         </div>
       </div>
 
-            <!-- 3. AGENDA 14 -->
+      <!-- 3. AGENDA 14 -->
       <div class="agenda" id="agenda14">
         <div class="agenda-card">
           <h3>Programa de la Batalla de San Jacinto</h3>
@@ -945,27 +901,12 @@
               <div><b>Breve reseña histórica de la Batalla de San Jacinto</b><span>Estudiante Ashley Alexandra Ruiz Calero, de quinto año.</span></div>
             </li>
           </ol>
-          <div class="agenda-btn" style="margin:1rem 0 0">
-            <button class="btn btn-soft" type="button" onclick="verAgenda15()">Ver agenda del 15</button>
-          </div>
         </div>
         <div class="actions" style="padding:.4rem 0 0">
           <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
         </div>
       </div>
 
-      <!-- 4. AGENDA 15 -->
-      <div class="agenda" id="agenda15">
-        <div class="agenda-card">
-          <p class="day">15 de septiembre · 7:00 a. m.</p>
-          <h3>Lectura del Acta de Independencia de Centroamérica</h3>
-          <p>Actividad en el Colegio José Augusto Flores Zúniga.</p>
-        </div>
-        <div class="actions" style="padding:.4rem 0 0">
-          <button class="btn btn-dark" type="button" onclick="inicio()">Cerrar agenda</button>
-          <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
-        </div>
-      </div>
     </article>
   </div>
 
@@ -1040,21 +981,12 @@
 
     function verAgenda14() {
       details.classList.add("off");
-      agenda15.classList.remove("on");
       agenda14.classList.add("on");
       agenda14.scrollTop = 0;
     }
 
-    function verAgenda15() {
-      details.classList.add("off");
-      agenda14.classList.remove("on");
-      agenda15.classList.add("on");
-      agenda15.scrollTop = 0;
-    }
-
     function verDetalle() {
       agenda14.classList.remove("on");
-      agenda15.classList.remove("on");
       details.classList.remove("off");
       details.scrollTop = 0;
       fadeTop.style.opacity = "0";
