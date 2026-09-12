@@ -298,6 +298,11 @@
       animation: up .9s cubic-bezier(.22, 1, .36, 1) both;
     }
 
+    .cover-body p {
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .8);
+    }
+
     @keyframes up {
       from {
         opacity: 0;
@@ -627,6 +632,12 @@
       gap: .5rem;
     }
 
+    .agenda-btn {
+      margin: .9rem 1.15rem 0;
+      display: grid;
+      gap: .5rem;
+    }
+
     .btn {
       border: 0;
       border-radius: 12px;
@@ -740,6 +751,68 @@
     .agenda-card+.agenda-card p {
       color: var(--soft);
     }
+
+    .agenda-list {
+      list-style: none;
+      counter-reset: prog;
+      display: grid;
+      gap: .55rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .agenda-list li {
+      counter-increment: prog;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .65rem;
+      align-items: center;
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 12px;
+      padding: .55rem .7rem;
+      font-size: clamp(0.88rem, 3.4cqi, 0.98rem);
+      line-height: 1.35;
+      color: #f0f7ff;
+    }
+
+    .agenda-list li::before {
+      content: counter(prog, decimal-leading-zero);
+      display: grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      flex: none;
+      border-radius: 50%;
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      color: #103a1f;
+      background: linear-gradient(150deg, #f4c27a, #e0a066);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    }
+
+    .agenda-list li b {
+      display: block;
+      font-weight: 800;
+      color: #fff3d8;
+      text-shadow: 0 2px 10px rgba(0, 10, 30, .7);
+    }
+
+    .agenda-list li span {
+      display: block;
+      color: #ffd9a0;
+      font-weight: 600;
+      text-shadow: 0 1px 6px rgba(0, 10, 30, .55);
+    }
+
+    .agenda-list li div {
+      display: inline-block;
+      border: 1.5px solid rgba(160, 224, 255, .6);
+      border-radius: 8px;
+      padding: .28rem .55rem;
+      background: none;
+    }
   </style>
 </head>
 
@@ -760,9 +833,8 @@
               alt="Escudo de Nicaragua"></div>
           <div class="page-shade" aria-hidden="true"></div>
           <div class="cover-body">
-            <h1>14 de septiembre</h1>
-            <span class="eyebrow">El Colegio Público José Augusto Flores Zúniga</span>
-            <p>Te invitamos  a conmemorar  la Batalla de San Jacinto.</p>
+            <h1>Colegio José Augusto Flores Zúniga</h1>
+            <p>Te invitamos a conmemorar la Batalla de San Jacinto.</p>
             <button class="open-btn" type="button" onclick="abrir()">Abrir invitación</button>
           </div>
         </div>
@@ -799,12 +871,15 @@
           <div class="place">
             <div class="place-row">
               <p class="k">Salida</p>
-              <p class="v">La Hermita</p>
+              <p class="v">La Ermita</p>
             </div>
             <div class="place-row">
               <p class="k">Finalizamos en el</p>
               <p class="v">Colegio José Augusto Flores Zúniga</p>
             </div>
+          </div>
+          <div class="agenda-btn">
+            <button class="btn btn-dark" type="button" onclick="verAgenda14()">Ver agenda del 14</button>
           </div>
         </div>
 
@@ -815,7 +890,7 @@
 
         <div class="block">
           <div class="label"><span>Día 15 · Independencia</span></div>
-          <h3 class="title">Acta de Independencia</h3>
+          <h3 class="title">Lectura del Acta de Independencia de Centroamérica</h3>
           <div class="meta">
             <article>
               <p class="k">Fecha</p>
@@ -835,24 +910,59 @@
         </div>
 
         <div class="actions">
-          <button class="btn btn-dark" type="button" onclick="verAgenda()">Ver agenda</button>
+          <button class="btn btn-dark" type="button" onclick="verAgenda15()">Ver agenda del 15</button>
           <button class="btn btn-soft" type="button" onclick="inicio()">Cerrar invitación</button>
         </div>
       </div>
 
-      <!-- 3. AGENDA -->
-      <div class="agenda" id="agenda">
+            <!-- 3. AGENDA 14 -->
+      <div class="agenda" id="agenda14">
         <div class="agenda-card">
-          <p class="day">14 de septiembre · 7:00 a. m.</p>
-          <h3>Desfile · San Jacinto</h3>
-          <p>Salida desde El Hatillo. Punto de reunión: Colegio José Augusto Flores Zúniga.</p>
+          <h3>Programa de la Batalla de San Jacinto</h3>
+          <ol class="agenda-list">
+            <li>
+              <div><b>Invocación al Creador</b><span>Pastor Fermín Antonio Nicaragua.</span></div>
+            </li>
+            <li>
+              <div><b>Himno Nacional</b><span>Coro del Colegio Público José Augusto Flores Zúniga.</span></div>
+            </li>
+            <li>
+              <div><b>Palabras</b><span>Cro. Político del Distrito Dos, Bismarck Medina.</span></div>
+            </li>
+            <li>
+              <div><b>Palabras</b><span>Director del Centro, Cro. Guillermo Martínez.</span></div>
+            </li>
+            <li>
+              <div><b>Compañer@s representantes UV Valle La Laguna, Zona Sur</b><span>Ana Méndez · Luis Téllez · Pedro Peña.</span></div>
+            </li>
+            <li>
+              <div><b>Por la Juventud del Valle Sur</b><span>Itzel Carranza · Jeferson Ruiz.</span></div>
+            </li>
+            <li>
+              <div><b>Danza folclórica</b><span>Estudiante Britany Castro, de 11.º grado.</span></div>
+            </li>
+            <li>
+              <div><b>Breve reseña histórica de la Batalla de San Jacinto</b><span>Estudiante Ashley Alexandra Ruiz Calero, de quinto año.</span></div>
+            </li>
+          </ol>
+          <div class="agenda-btn" style="margin:1rem 0 0">
+            <button class="btn btn-soft" type="button" onclick="verAgenda15()">Ver agenda del 15</button>
+          </div>
         </div>
+        <div class="actions" style="padding:.4rem 0 0">
+          <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
+        </div>
+      </div>
+
+      <!-- 4. AGENDA 15 -->
+      <div class="agenda" id="agenda15">
         <div class="agenda-card">
           <p class="day">15 de septiembre · 7:00 a. m.</p>
-          <h3>Acta de Independencia</h3>
+          <h3>Lectura del Acta de Independencia de Centroamérica</h3>
           <p>Actividad en el Colegio José Augusto Flores Zúniga.</p>
         </div>
         <div class="actions" style="padding:.4rem 0 0">
+          <button class="btn btn-dark" type="button" onclick="inicio()">Cerrar agenda</button>
           <button class="btn btn-soft" type="button" onclick="verDetalle()">Volver a la invitación</button>
         </div>
       </div>
@@ -919,25 +1029,32 @@
     function inicio() {
       details.scrollTop = 0;
       details.classList.remove("off");
-      agenda.classList.remove("on");
-      agenda.scrollTop = 0;
+      verDetalle();
       fadeTop.style.opacity = "0";
       letter.classList.remove("show");
       cover.classList.remove("out");
-      verDetalle();
       abriendo = false;
       stopMusic();
       setTimeout(() => cover.classList.remove("turning"), 80);
     }
 
-    function verAgenda() {
+    function verAgenda14() {
       details.classList.add("off");
-      agenda.classList.add("on");
-      agenda.scrollTop = 0;
+      agenda15.classList.remove("on");
+      agenda14.classList.add("on");
+      agenda14.scrollTop = 0;
+    }
+
+    function verAgenda15() {
+      details.classList.add("off");
+      agenda14.classList.remove("on");
+      agenda15.classList.add("on");
+      agenda15.scrollTop = 0;
     }
 
     function verDetalle() {
-      agenda.classList.remove("on");
+      agenda14.classList.remove("on");
+      agenda15.classList.remove("on");
       details.classList.remove("off");
       details.scrollTop = 0;
       fadeTop.style.opacity = "0";
